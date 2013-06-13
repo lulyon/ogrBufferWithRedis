@@ -4,10 +4,12 @@
 /// @version 0.6
 /// @date 2013-05-15
 
+#include "ogrspatialop.h"
 #include "ogrsf_frmts.h"
 
+
 OGRLayer *ComputeBuffer(OGRLayer *poLayer, int radius_) {
-  OGRFeatureDefn *input_defn = poLayer->GetLayerDefn();
+	OGRFeatureDefn *input_defn = poLayer->GetLayerDefn();
 	int featureCount = poLayer->GetFeatureCount();
 	poLayer->ResetReading();
 	int iFeature = 0;
