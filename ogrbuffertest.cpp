@@ -6,6 +6,7 @@
 
 #include "ogrserialize.h"
 #include "ogrshapefileio.h"
+#include "ogrspatialop.h"
 #include "redisclient.h"
 
 #include<stdio.h>
@@ -16,9 +17,7 @@
 #define STRLEN 1000
 
 void Test1(const char *layername) {
-  char *filepath_tail = ".shp";
-
-//	char *layername = "Hunan_EPSG3785";
+	char *filepath_tail = ".shp";
 
 	char filepath[STRLEN] = "/home/luliang/data/";
 	char outpath[STRLEN] = "/home/luliang/result/";
@@ -51,8 +50,6 @@ void Test1(const char *layername) {
 void Test2(const char *layername) {
 	char *filepath_tail = ".shp";
 
-	//	char *layername = "Hunan_EPSG3785";
-
 	char filepath[STRLEN] = "/home/luliang/data/";
 	char outpath[STRLEN] = "/home/luliang/result/";
 
@@ -69,11 +66,11 @@ void Test2(const char *layername) {
 	{
 		OGRLayer *poLayer = ReadLayerAtPath(filepath);
 		size_t size = SizeOfRegion(poLayer);
-		char *value = BytesOfRegion(poLayer, size);
+		unsigned char *value = BytesOfRegion(poLayer, size);
 
 		redisClient client;
 		client.connect();
-		client.put(key, value, size);
+		client.put(key, (const char *)value, size);
 		free(value);
 
 		if (poLayer) {
@@ -94,14 +91,13 @@ void Test2(const char *layername) {
 		OGRLayer *newLayer = ComputeBuffer(poLayer, radius_);
 
 		size_t newsize = SizeOfRegion(newLayer);
-		char *newvalue = BytesOfRegion(newLayer, newsize);
+		unsigned char *newvalue = BytesOfRegion(newLayer, newsize);
 		char *newkey = (char *)malloc(STRLEN);
 		strcpy(newkey, layername);
 		strcat(newkey, "_buffer");
 
-		redisClient client;
 		client.connect();
-		client.put(newkey, newvalue, newsize);
+		client.put(newkey, (char *)newvalue, newsize);
 		free(newkey);
 		free(newvalue);
 
@@ -121,7 +117,7 @@ void Test2(const char *layername) {
 }
 
 int main() {
-	char *layername = "Hunan_EPSG3785";
+	char *layername = "Data_EPSG3785";
 	Test1(layername);
 	Test2(layername);
 
