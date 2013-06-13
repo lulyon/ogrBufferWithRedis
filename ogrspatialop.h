@@ -7,6 +7,8 @@
 #ifndef OGR_SPATIALOP_H_
 #define OGR_SPATIALOP_H_
 
+#include "ogrsf_frmts.h"
+
 OGRLayer *ComputeBuffer(OGRLayer *poLayer, int radius_);
 
 #endif /* OGRSPATIALOP_H_ */
