@@ -8,7 +8,7 @@
 #include "ogrserialize.h"
 
 size_t SizeOfRegion(OGRLayer *layer) {
-  size_t type_size = sizeof(OGRwkbGeometryType);
+	size_t type_size = sizeof(OGRwkbGeometryType);
 	size_t count_size = sizeof(int);
 	size_t size = type_size + count_size;
 
