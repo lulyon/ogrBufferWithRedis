@@ -7,6 +7,11 @@
 #ifndef OGR_SERIALIZE_H_
 #define OGR_SERIALIZE_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "ogrsf_frmts.h"
+
 size_t SizeOfRegion(OGRLayer *layer);
 
 unsigned char *BytesOfRegion(OGRLayer *layer, size_t size);
