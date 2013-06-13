@@ -7,6 +7,8 @@
 #ifndef OGR_SHPAEFILE_IO_H_
 #define OGR_SHPAEFILE_IO_H_
 
+#include "ogrsf_frmts.h"
+
 OGRLayer *ReadLayerAtPath(const char *layerPath);
 void WriteLayerAtPath(OGRLayer *outLayer, const char *outSourceString);
 
