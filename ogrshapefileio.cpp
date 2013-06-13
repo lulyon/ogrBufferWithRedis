@@ -4,13 +4,13 @@
 /// @version 0.6
 /// @date 2013-05-15
 
-#include "ogrsf_frmts.h"
+
 #include "ogrshapefileio.h"
 
 #include <assert.h>
 
 OGRLayer *ReadLayerAtPath(const char *layerPath) {
-  OGRRegisterAll();
+	OGRRegisterAll();
 
 	std::string pszName(layerPath);
 
