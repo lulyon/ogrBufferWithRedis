@@ -74,7 +74,7 @@ OGRLayer *RegionWithBytesAndSize(unsigned char *bytes, size_t size) {
 		return NULL;
 	}
 
-//	OGRLayer *layer = new OGRMemLayer("", NULL, type);
+	OGRRegisterAll();
 	OGRSFDriver *pdriver =
 			OGRSFDriverRegistrar::GetRegistrar()->GetDriverByName("Memory");
 	if (!pdriver)
